@@ -1,21 +1,19 @@
-# Mister Ali — GitHub Portfolio
+# Mister Ali — Professional GitHub Portfolio
 
-A modern, responsive personal portfolio website built with plain HTML and CSS.
+Modern responsive portfolio built with HTML and CSS.
 
-## Live with GitHub Pages
+## Files
+- `index.html`
+- `style.css`
+- `README.md`
 
-1. Create a GitHub repository, for example `portfolio`.
-2. Upload `index.html` and `style.css`.
-3. Replace the placeholder email, GitHub username and LinkedIn username in `index.html`.
-4. Go to **Settings → Pages**.
-5. Under **Build and deployment**, choose **Deploy from a branch**.
-6. Select `main` and `/root`, then save.
-7. Your portfolio will be available at:
-   `https://YOUR_GITHUB_USERNAME.github.io/portfolio/`
+## GitHub Pages
+Upload `index.html` and `style.css` directly to the repository root, then use GitHub Pages from the `main` branch and `/ (root)`.
 
-## Customize
+## Before publishing
+Replace:
+- `YOUR_EMAIL@example.com`
+- `YOUR_GITHUB_USERNAME`
+- `YOUR_LINKEDIN_USERNAME`
 
-- Change the name in `index.html`.
-- Add real project URLs.
-- Replace the placeholder contact links.
-- Add project screenshots later if needed.
+The navigation links scroll to real sections on the same page, the mobile menu works, and the active navigation state updates while scrolling.
