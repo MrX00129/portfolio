@@ -1,19 +1,15 @@
-# Mister Ali — Professional GitHub Portfolio
+# WebFix Expert Portfolio
 
-Modern responsive portfolio built with HTML and CSS.
+A modern, responsive WebFix Expert business portfolio built with plain HTML and CSS.
 
-## Files
+## Upload to GitHub Pages
+Upload these files directly to the repository root:
 - `index.html`
 - `style.css`
-- `README.md`
 
-## GitHub Pages
-Upload `index.html` and `style.css` directly to the repository root, then use GitHub Pages from the `main` branch and `/ (root)`.
+`README.md` is optional.
 
-## Before publishing
-Replace:
-- `YOUR_EMAIL@example.com`
-- `YOUR_GITHUB_USERNAME`
-- `YOUR_LINKEDIN_USERNAME`
+## Customize before publishing
+Replace `YOUR_EMAIL@example.com` in `index.html` with the real business email.
 
-The navigation links scroll to real sections on the same page, the mobile menu works, and the active navigation state updates while scrolling.
+The navigation, section links, mobile menu and scroll-active navigation are functional.
