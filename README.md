@@ -13,3 +13,7 @@ Upload these files directly to the repository root:
 Replace `YOUR_EMAIL@example.com` in `index.html` with the real business email.
 
 The navigation, section links, mobile menu and scroll-active navigation are functional.
+
+
+## Motion
+Includes subtle CSS animations, scroll reveal, hover motion, and respects `prefers-reduced-motion`.

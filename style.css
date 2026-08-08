@@ -8,3 +8,38 @@ html{scroll-behavior:smooth}body{font-family:"DM Sans",Arial,sans-serif;color:va
 footer{max-width:1220px;margin:auto;padding:28px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1c271f;color:#657168;font-size:9px}
 @media(max-width:950px){nav{gap:15px}.hero,.about-grid,.solution-layout{grid-template-columns:1fr;gap:50px}.hero{padding-top:70px}.hero-visual{min-height:470px}.heading{grid-template-columns:1fr;gap:20px}.service-grid{grid-template-columns:1fr 1fr}.project-grid{grid-template-columns:1fr 1fr}.project:last-child{grid-column:span 2}}
 @media(max-width:700px){.nav{height:68px}.top-btn{display:none}.menu{display:block}nav{display:none;position:absolute;top:68px;left:15px;right:15px;padding:12px;background:#0c120f;border:1px solid #27342c;border-radius:12px;flex-direction:column;gap:0}nav.open{display:flex}nav a{padding:11px}nav a.active:after{display:none}.hero{padding:70px 20px 75px}.section{padding:80px 20px}.hero h1{font-size:48px;letter-spacing:-2.5px}.hero-metrics{gap:20px}.hero-visual{min-height:410px}.profile-panel{width:310px;height:380px}.floating-card{display:none}.service-grid,.project-grid{grid-template-columns:1fr}.project:last-child{grid-column:auto}footer{flex-direction:column;gap:10px;text-align:center}}
+
+/* Premium motion layer */
+@media (prefers-reduced-motion:no-preference){
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal-left{opacity:0;transform:translateX(-35px);transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1)}
+  .reveal-right{opacity:0;transform:translateX(35px);transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1)}
+  .reveal.is-visible,.reveal-left.is-visible,.reveal-right.is-visible{opacity:1;transform:none}
+  .reveal-stagger>*{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1);transition-delay:var(--delay,0ms)}
+  .reveal-stagger.is-visible>*{opacity:1;transform:none}
+  .hero .eyebrow{animation:softIn .8s .1s both}
+  .hero h1{animation:softIn .8s .2s both}
+  .hero .lead{animation:softIn .8s .32s both}
+  .hero .buttons{animation:softIn .8s .44s both}
+  .hero-metrics{animation:softIn .8s .56s both}
+  @keyframes softIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .halo{animation:pulseGlow 6s ease-in-out infinite alternate}
+  @keyframes pulseGlow{from{transform:scale(.92);opacity:.7}to{transform:scale(1.08);opacity:1}}
+  .orbit-a{animation:orbitFloat 8s ease-in-out infinite}
+  .orbit-b{animation:orbitFloat 10s ease-in-out infinite reverse}
+  @keyframes orbitFloat{0%,100%{transform:rotate(-22deg) translateY(0)}50%{transform:rotate(-16deg) translateY(-10px)}}
+  .orbit-b{animation-name:orbitFloatB}
+  @keyframes orbitFloatB{0%,100%{transform:rotate(35deg) translateY(0)}50%{transform:rotate(28deg) translateY(10px)}}
+  .floating-card{animation:floatCard 4s ease-in-out infinite}
+  .card-two{animation-delay:-2s}
+  @keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  .profile-panel{transition:transform .18s ease-out,box-shadow .3s ease}
+  .profile-panel:hover{box-shadow:0 40px 110px rgba(0,0,0,.6),0 0 45px rgba(105,245,154,.08)}
+  .btn.primary{position:relative;overflow:hidden}
+  .btn.primary:after{content:"";position:absolute;top:-50%;left:-80%;width:45%;height:200%;transform:rotate(20deg);background:rgba(255,255,255,.28);transition:left .65s ease}
+  .btn.primary:hover:after{left:135%}
+  .service-grid article .icon{transition:transform .3s ease,box-shadow .3s ease}
+  .service-grid article:hover .icon{transform:translateY(-3px) rotate(-4deg);box-shadow:0 0 25px rgba(105,245,154,.12)}
+  .project-art{transition:transform .5s ease}
+  .project:hover .project-art{transform:scale(1.015)}
+}
