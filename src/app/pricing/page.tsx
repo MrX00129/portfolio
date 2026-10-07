@@ -14,7 +14,6 @@ import {
   Monitor,
   Briefcase,
   Zap,
-  Phone,
   HeartHandshake,
   TrendingUp
 } from "lucide-react";
@@ -143,7 +142,7 @@ const websiteMaintenance = [
       "Content Updates",
       "Security Monitoring",
       "Performance Optimization",
-      "WhatsApp Support",
+      "Dedicated Email Support",
     ],
   },
   {
@@ -210,7 +209,7 @@ const appMaintenance = [
       "Bug Fixes",
       "Security Updates",
       "Version Support",
-      "Priority WhatsApp Support",
+      "Priority Email Support",
     ],
   },
 ];
@@ -226,7 +225,7 @@ const allInOnePlan = {
     "SEO & Analytics Setup",
     "AI Automation Setup",
     "Lifetime Maintenance (Web + App)",
-    "Priority WhatsApp Support",
+    "Priority Email Support",
     "Dedicated Support",
   ],
 };

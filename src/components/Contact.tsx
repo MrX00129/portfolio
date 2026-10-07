@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, MessageCircle, Calendar, MapPin, User } from "lucide-react";
+import { Mail, Calendar, User, Globe } from "lucide-react";
 import Link from "next/link";
 
 export default function Contact() {
@@ -34,26 +34,28 @@ export default function Contact() {
                   <p className="text-lg font-semibold text-white">ALI</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 text-brand-cyan">
                   <Mail size={20} />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Website</p>
-                  <Link href="https://webfix.expert" className="text-lg font-semibold text-white hover:text-brand-cyan transition-colors">
-                    webfix.expert
-                  </Link>
+                  <p className="text-sm text-gray-500">Email Contact</p>
+                  <a href="mailto:ali@webfix.expert" className="text-lg font-semibold text-white hover:text-brand-cyan transition-colors">
+                    ali@webfix.expert
+                  </a>
                 </div>
               </div>
               
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-white/10 text-brand-yellow">
-                  <MapPin size={20} />
+                  <Globe size={20} />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Location</p>
-                  <p className="text-lg font-semibold text-white">West Bengal, India</p>
+                  <p className="text-sm text-gray-500">Official Website</p>
+                  <Link href="https://webfix.expert" className="text-lg font-semibold text-white hover:text-brand-cyan transition-colors">
+                    webfix.expert
+                  </Link>
                 </div>
               </div>
             </div>
@@ -71,17 +73,19 @@ export default function Contact() {
             <h4 className="text-2xl font-bold text-white mb-8">Start a Conversation</h4>
             
             <div className="space-y-4">
-              <button className="w-full py-4 px-6 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-semibold flex items-center justify-center gap-3 transition-all shadow-lg shadow-brand-blue/20">
-                <Mail size={20} /> Contact Us via Email
-              </button>
+              <a
+                href="mailto:ali@webfix.expert"
+                className="w-full py-4 px-6 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-semibold flex items-center justify-center gap-3 transition-all shadow-lg shadow-brand-blue/20"
+              >
+                <Mail size={20} /> Email Us: ali@webfix.expert
+              </a>
               
-              <button className="w-full py-4 px-6 rounded-xl bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold flex items-center justify-center gap-3 transition-all shadow-lg shadow-[#25D366]/20">
-                <MessageCircle size={20} /> Chat on WhatsApp
-              </button>
-              
-              <button className="w-full py-4 px-6 rounded-xl glass border border-white/10 hover:bg-white/10 text-white font-semibold flex items-center justify-center gap-3 transition-all">
-                <Calendar size={20} /> Schedule a Meeting
-              </button>
+              <a
+                href="mailto:ali@webfix.expert?subject=Meeting%20Consultation%20Request"
+                className="w-full py-4 px-6 rounded-xl glass border border-white/10 hover:bg-white/10 text-white font-semibold flex items-center justify-center gap-3 transition-all"
+              >
+                <Calendar size={20} /> Schedule a Consultation
+              </a>
             </div>
             
             <p className="text-center text-gray-500 text-sm mt-8">

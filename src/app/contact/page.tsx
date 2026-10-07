@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Mail, MessageCircle, MapPin, Phone } from "lucide-react";
+import { Mail, Globe, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Contact Us | WebFix Expert",
@@ -17,43 +17,48 @@ export default function ContactPage() {
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="max-w-3xl mb-16 text-center mx-auto">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">Let's Talk <span className="text-gradient">Business</span></h1>
-            <p className="text-gray-400 text-lg">Ready to transform your digital presence? Send us a message or schedule a direct consultation.</p>
+            <p className="text-gray-400 text-lg">Ready to transform your digital presence? Send us a message or contact us directly via email.</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16 items-start max-w-6xl mx-auto">
              
              {/* Contact Info */}
-             <div className="space-y-8">
-                <div className="glass p-6 rounded-2xl border border-white/10 flex items-start gap-4">
-                   <div className="w-12 h-12 shrink-0 rounded-full bg-brand-blue/20 flex items-center justify-center text-brand-blue">
-                      <Mail size={24} />
+             <div className="space-y-6">
+                <div className="glass p-8 rounded-2xl border border-white/10 flex items-start gap-5">
+                   <div className="w-14 h-14 shrink-0 rounded-full bg-brand-blue/20 flex items-center justify-center text-brand-blue">
+                      <Mail size={28} />
                    </div>
                    <div>
-                      <h4 className="text-white font-semibold text-lg">Email Us</h4>
-                      <p className="text-gray-400 text-sm mb-2">For general inquiries and project proposals.</p>
-                      <a href="mailto:hello@webfix.expert" className="text-brand-cyan hover:underline">hello@webfix.expert</a>
+                      <h4 className="text-white font-bold text-xl mb-1">Direct Email</h4>
+                      <p className="text-gray-400 text-sm mb-3">For general inquiries, custom quotes, and project proposals.</p>
+                      <a href="mailto:ali@webfix.expert" className="text-lg font-semibold text-brand-cyan hover:underline">
+                         ali@webfix.expert
+                      </a>
                    </div>
                 </div>
 
-                <div className="glass p-6 rounded-2xl border border-white/10 flex items-start gap-4">
-                   <div className="w-12 h-12 shrink-0 rounded-full bg-green-500/20 flex items-center justify-center text-green-500">
-                      <MessageCircle size={24} />
+                <div className="glass p-8 rounded-2xl border border-white/10 flex items-start gap-5">
+                   <div className="w-14 h-14 shrink-0 rounded-full bg-brand-cyan/20 flex items-center justify-center text-brand-cyan">
+                      <Globe size={28} />
                    </div>
                    <div>
-                      <h4 className="text-white font-semibold text-lg">WhatsApp</h4>
-                      <p className="text-gray-400 text-sm mb-2">Instant messaging for quick support.</p>
-                      <a href="#" className="text-brand-cyan hover:underline">+91 98745 67890</a>
+                      <h4 className="text-white font-bold text-xl mb-1">Official Website</h4>
+                      <p className="text-gray-400 text-sm mb-3">Explore our services, SaaS products, and free web tools suite.</p>
+                      <a href="https://webfix.expert" className="text-lg font-semibold text-brand-cyan hover:underline">
+                         https://webfix.expert
+                      </a>
                    </div>
                 </div>
 
-                <div className="glass p-6 rounded-2xl border border-white/10 flex items-start gap-4">
-                   <div className="w-12 h-12 shrink-0 rounded-full bg-brand-yellow/20 flex items-center justify-center text-brand-yellow">
-                      <MapPin size={24} />
+                <div className="glass p-8 rounded-2xl border border-white/10 flex items-start gap-5">
+                   <div className="w-14 h-14 shrink-0 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
+                      <ShieldCheck size={28} />
                    </div>
                    <div>
-                      <h4 className="text-white font-semibold text-lg">Our Office</h4>
-                      <p className="text-gray-400 text-sm mb-2">West Bengal, India</p>
-                      <a href="#" className="text-brand-cyan hover:underline">View on Google Maps</a>
+                      <h4 className="text-white font-bold text-xl mb-1">Response Guarantee</h4>
+                      <p className="text-gray-400 text-sm">
+                         We reply to all legitimate project inquiries within 2 to 24 hours on business days.
+                      </p>
                    </div>
                 </div>
              </div>
