@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Mail, Calendar, User, Globe } from "lucide-react";
 import Link from "next/link";
+import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
 
 export default function Contact() {
   return (
@@ -41,8 +42,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Email Contact</p>
-                  <a href="mailto:ali@webfix.expert" className="text-lg font-semibold text-white hover:text-brand-cyan transition-colors">
-                    ali@webfix.expert
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-lg font-semibold text-white hover:text-brand-cyan transition-colors">
+                    {CONTACT_EMAIL}
                   </a>
                 </div>
               </div>
@@ -53,7 +54,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-gray-500">Official Website</p>
-                  <Link href="https://webfix.expert" className="text-lg font-semibold text-white hover:text-brand-cyan transition-colors">
+                  <Link href={SITE_URL} className="text-lg font-semibold text-white hover:text-brand-cyan transition-colors">
                     webfix.expert
                   </Link>
                 </div>
@@ -74,14 +75,14 @@ export default function Contact() {
             
             <div className="space-y-4">
               <a
-                href="mailto:ali@webfix.expert"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="w-full py-4 px-6 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-semibold flex items-center justify-center gap-3 transition-all shadow-lg shadow-brand-blue/20"
               >
-                <Mail size={20} /> Email Us: ali@webfix.expert
+                <Mail size={20} /> Email Us: {CONTACT_EMAIL}
               </a>
               
               <a
-                href="mailto:ali@webfix.expert?subject=Meeting%20Consultation%20Request"
+                href={`mailto:${CONTACT_EMAIL}?subject=Meeting%20Consultation%20Request`}
                 className="w-full py-4 px-6 rounded-xl glass border border-white/10 hover:bg-white/10 text-white font-semibold flex items-center justify-center gap-3 transition-all"
               >
                 <Calendar size={20} /> Schedule a Consultation
@@ -89,7 +90,7 @@ export default function Contact() {
             </div>
             
             <p className="text-center text-gray-500 text-sm mt-8">
-              We typically reply within 2 hours during business days.
+              We reply to legitimate project inquiries as soon as possible during business days.
             </p>
           </motion.div>
 

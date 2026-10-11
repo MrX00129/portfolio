@@ -1,19 +1,26 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Users, Target, Zap, Trophy, ShieldCheck, Star, Award, Code, Sparkles, Heart, CheckCircle2, ArrowRight } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+import { ArrowRight, Sparkles, Target, Zap } from "lucide-react";
+import { BRAND_NAME, createMetadata, webPageJsonLd } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "About Us & Founder | WebFix Expert",
-  description: "Learn about WebFix Expert, founded by ALI. Discover our mission, vision, core values, and digital engineering expertise.",
-};
+const title = `About ${BRAND_NAME} & Founder ALI`;
+const description =
+  "Learn about WebFix Experts, the digital solutions brand founded by ALI for web development, AI automation, SEO, and business growth systems.";
+
+export const metadata: Metadata = createMetadata({
+  title,
+  description,
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
     <main className="flex min-h-screen flex-col bg-[#000a18] text-white">
       <Navbar />
+      <JsonLd data={webPageJsonLd({ path: "/about", title, description })} />
       
       {/* Hero Header */}
       <section className="pt-32 pb-20 relative overflow-hidden border-b border-white/5 bg-gradient-to-b from-[#001428] to-[#000a18]">
@@ -23,13 +30,13 @@ export default function AboutPage() {
         <div className="container mx-auto px-6 md:px-12 relative z-10 max-w-5xl">
           <div className="max-w-3xl">
             <span className="text-xs font-mono font-bold text-cyan-400 tracking-widest uppercase px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 inline-block mb-4">
-              ABOUT WEBFIX EXPERT
+              ABOUT WEBFIX EXPERTS
             </span>
             <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
               Empowering Businesses Through <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-emerald-400">Innovation & Vision</span>
             </h1>
             <p className="text-slate-300 text-lg md:text-xl leading-relaxed mb-8">
-              Founded and led by <strong className="text-cyan-400 font-bold">ALI</strong>, WebFix Expert is a complete digital partner engineered to build, fix, automate, and scale your business with enterprise-grade solutions.
+              Founded and led by <strong className="text-cyan-400 font-bold">ALI</strong>, WebFix Experts is a digital partner for building, fixing, automating, and scaling business websites and digital systems.
             </p>
           </div>
         </div>
@@ -86,26 +93,26 @@ export default function AboutPage() {
                 </blockquote>
 
                 <p className="text-slate-300 text-base leading-relaxed">
-                  Under the direction of <strong className="text-white">ALI</strong>, WebFix Expert has grown into a comprehensive digital suite offering 24 specialized services — spanning WordPress custom development, native app engineering, ChatGPT advertising, and enterprise AI workflows.
+                  Under the direction of <strong className="text-white">ALI</strong>, WebFix Experts offers practical services across WordPress development, custom web engineering, search visibility, paid advertising, website maintenance, and AI workflow automation.
                 </p>
 
                 {/* Key Founder Highlights */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-white/10 text-center">
                   <div className="p-3 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <div className="text-2xl font-black text-cyan-400">6+</div>
-                    <div className="text-[11px] text-slate-400">Years Experience</div>
+                    <div className="text-2xl font-black text-cyan-400">Web</div>
+                    <div className="text-[11px] text-slate-400">Development</div>
                   </div>
                   <div className="p-3 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <div className="text-2xl font-black text-emerald-400">100+</div>
-                    <div className="text-[11px] text-slate-400">Projects Built</div>
+                    <div className="text-2xl font-black text-emerald-400">AI</div>
+                    <div className="text-[11px] text-slate-400">Automation</div>
                   </div>
                   <div className="p-3 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <div className="text-2xl font-black text-blue-400">50+</div>
-                    <div className="text-[11px] text-slate-400">Happy Clients</div>
+                    <div className="text-2xl font-black text-blue-400">SEO</div>
+                    <div className="text-[11px] text-slate-400">Search Strategy</div>
                   </div>
                   <div className="p-3 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <div className="text-2xl font-black text-amber-400">100%</div>
-                    <div className="text-[11px] text-slate-400">Dedication</div>
+                    <div className="text-2xl font-black text-amber-400">Care</div>
+                    <div className="text-[11px] text-slate-400">Maintenance</div>
                   </div>
                 </div>
 

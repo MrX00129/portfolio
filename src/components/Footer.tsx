@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { FaFacebook, FaLinkedin, FaInstagram, FaYoutube, FaGithub } from "react-icons/fa";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -16,41 +15,48 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-3 mb-6 group">
               <Image
                 src="/logo4.png"
-                alt="WebFix Expert Logo"
+                alt="WebFix Experts logo"
                 width={280}
                 height={90}
                 className="h-14 sm:h-16 md:h-20 w-auto object-contain group-hover:scale-105 transition-transform"
               />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Founded by <strong className="text-cyan-400">ALI</strong>. We Fix. We Build. We Grow Businesses. WebFix Expert provides complete digital solutions including websites, apps, digital marketing, AI automation tools to help your business scale efficiently.
+              Founded by <strong className="text-cyan-400">ALI</strong>. We Fix. We Build. We Grow Businesses. WebFix Experts provides digital solutions including websites, apps, digital marketing, AI automation, and maintenance support.
             </p>
-            <div className="flex items-center gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-brand-blue transition-all">
-                <FaFacebook size={18} />
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="mailto:ali@webfix.expert"
+                className="px-4 py-2 rounded-full bg-white/5 text-gray-300 hover:text-white hover:bg-brand-blue transition-all text-sm"
+              >
+                ali@webfix.expert
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#0077b5] transition-all">
-                <FaLinkedin size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#E1306C] transition-all">
-                <FaInstagram size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#FF0000] transition-all">
-                <FaYoutube size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#003153] transition-all">
-                <FaGithub size={18} />
-              </a>
+              <Link
+                href="/contact"
+                className="px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-300 hover:text-white hover:bg-cyan-500/20 transition-all text-sm"
+              >
+                Contact WebFix
+              </Link>
             </div>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-6">Company</h4>
             <ul className="space-y-3">
-              {['Home', 'About Us', 'Portfolio', 'Case Studies', 'Pricing', 'Blog', 'Careers', 'Contact'].map((link, i) => (
+              {[
+                { name: "Home", href: "/" },
+                { name: "About", href: "/about" },
+                { name: "Services", href: "/services" },
+                { name: "Products", href: "/products" },
+                { name: "Portfolio", href: "/portfolio" },
+                { name: "Pricing", href: "/pricing" },
+                { name: "Blog", href: "/blog" },
+                { name: "Free Tools", href: "/resources/free-tools" },
+                { name: "Contact", href: "/contact" },
+              ].map((link, i) => (
                 <li key={i}>
-                  <Link href={`/${link.toLowerCase().replace(' ', '-')}`} className="text-gray-400 hover:text-brand-cyan transition-colors text-sm">
-                    {link}
+                  <Link href={link.href} className="text-gray-400 hover:text-brand-cyan transition-colors text-sm">
+                    {link.name}
                   </Link>
                 </li>
               ))}
@@ -63,7 +69,7 @@ export default function Footer() {
               {[
                 { name: 'WordPress Development', slug: 'wordpress-development' },
                 { name: 'Mobile App Development', slug: 'mobile-app-development' },
-                { name: 'ChatGPT Ads Expert', slug: 'chatgpt-ads-expert' },
+                { name: 'AI Search Visibility', slug: 'chatgpt-ads-expert' },
                 { name: 'Google & Meta Ads', slug: 'google-ads' },
                 { name: 'SEO Optimization', slug: 'seo-optimization' },
                 { name: 'AI Automation & Integrations', slug: 'ai-automation-integrations' },
@@ -101,11 +107,11 @@ export default function Footer() {
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">
-            © {currentYear} WebFix Expert. All Rights Reserved.
+            © {currentYear} WebFix Experts. All Rights Reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="/privacy" className="text-gray-500 text-sm hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="text-gray-500 text-sm hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/privacy-policy" className="text-gray-500 text-sm hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="text-gray-500 text-sm hover:text-white transition-colors">Terms</Link>
             <Link href="/login" className="text-gray-500 text-sm hover:text-white transition-colors">Client Portal</Link>
           </div>
         </div>

@@ -13,7 +13,7 @@ const megaMenus = {
     { name: "Web Design & UI/UX", href: "/services/web-design-ui-ux" },
     { name: "Mobile App Development", href: "/services/mobile-app-development" },
     { name: "eCommerce Solutions", href: "/services/ecommerce-solutions" },
-    { name: "ChatGPT Ads Expert", href: "/services/chatgpt-ads-expert" },
+    { name: "AI Search Visibility", href: "/services/chatgpt-ads-expert" },
     { name: "Google & Meta Ads", href: "/services/google-ads" },
     { name: "SEO Optimization", href: "/services/seo-optimization" },
     { name: "AI Automation & Integrations", href: "/services/ai-automation-integrations" },
@@ -29,9 +29,9 @@ const megaMenus = {
   ],
   resources: [
     { name: "Free Tools", href: "/resources/free-tools" },
-    { name: "Templates", href: "/resources/templates" },
-    { name: "Documentation", href: "/resources/documentation" },
-    { name: "Tutorials", href: "/resources/tutorials" },
+    { name: "Blog", href: "/blog" },
+    { name: "Technical SEO Guide", href: "/blog/technical-seo-core-web-vitals-mastery" },
+    { name: "AI Automation Guide", href: "/blog/ai-auto-publishers-and-content-automation-guide" },
   ]
 };
 
@@ -57,7 +57,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-3 group">
           <Image
             src="/logo4.png"
-            alt="WebFix Expert Logo"
+            alt="WebFix Experts logo"
             width={240}
             height={80}
             className="h-12 sm:h-14 md:h-16 w-auto object-contain group-hover:scale-105 transition-transform"

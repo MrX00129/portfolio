@@ -239,15 +239,15 @@ export const SERVICES_DATA: Service[] = [
     color: "text-blue-400",
     borderColor: "border-blue-500/30",
     glowColor: "bg-blue-500/10",
-    description: "Propel your website to Page 1 of Google with technical SEO audits, high-intent keyword research, content optimization, and backlink strategies.",
-    subDetails: ["On-Page SEO", "Off-Page Backlinks", "Technical Audit", "Keyword Strategy"],
-    tags: ["On-Page", "Off-Page", "Technical SEO", "Keyword Research", "Backlinks"],
+    description: "Improve organic visibility with technical SEO audits, search-intent research, content optimization, structured data, and ethical authority-building guidance.",
+    subDetails: ["On-Page SEO", "Technical Audit", "Keyword Strategy", "Structured Data"],
+    tags: ["On-Page", "Technical SEO", "Keyword Research", "Structured Data", "Content Quality"],
     features: [
       "In-Depth Technical SEO & Site Speed Audit",
       "Competitor Keyword & Search Intent Research",
       "On-Page Content & Meta Tag Optimization",
-      "High-Authority Backlink & Outreach Building",
-      "Local SEO & Google Business Profile Ranking"
+      "Schema Markup & Indexing Readiness",
+      "Local SEO & Google Business Profile Optimization Guidance"
     ]
   },
   {
@@ -273,27 +273,27 @@ export const SERVICES_DATA: Service[] = [
     ]
   },
   {
-    id: "chatgpt-ads-expert",
+    id: "ai-search-visibility",
     slug: "chatgpt-ads-expert",
     number: "12",
-    title: "ChatGPT Ads Expert",
-    subtitle: "Run Ads on ChatGPT Platform",
+    title: "AI Search & ChatGPT Visibility",
+    subtitle: "GEO, AEO, Entity SEO, Crawlability",
     category: "Paid Advertising",
     iconName: "Bot",
     color: "text-emerald-400",
     borderColor: "border-emerald-500/60",
     glowColor: "bg-emerald-500/20",
     highlight: true,
-    badge: "Specialized AI Service",
-    description: "Pioneer conversational AI advertising by placing strategic brand sponsors and targeted prompt ads directly within ChatGPT and AI assistants.",
-    subDetails: ["ChatGPT Sponsor Placements", "Conversational AI Targeting", "Prompt Ads", "First-Mover Advantage"],
-    tags: ["ChatGPT Platform", "Run Ads on ChatGPT", "AI Advertising", "Prompt Marketing", "First Mover"],
+    badge: "AI Search Service",
+    description: "Make public website content easier for AI search systems and answer engines to understand, cite, and retrieve using ethical GEO and AEO practices.",
+    subDetails: ["Entity SEO", "Answer Engine Optimization", "Structured Content", "AI Crawler Access"],
+    tags: ["ChatGPT Search", "GEO", "AEO", "AI Search", "Structured Data"],
     features: [
-      "ChatGPT Platform Ad Placement & Campaign Setup",
-      "Conversational Intent & AI Prompt Targeting",
-      "AI Copywriting & Interactive Sponsor Messages",
-      "Brand Mention Integration in AI Responses",
-      "Real-Time Conversational Ad Analytics"
+      "Entity Clarity & Brand Consistency Review",
+      "AI-Readable Service Page Architecture",
+      "FAQ, Breadcrumb, Service, and WebPage Schema Guidance",
+      "Robots.txt and AI Crawler Access Checks",
+      "Search Intent Content Improvements for Answer Engines"
     ]
   },
   {
@@ -463,7 +463,7 @@ export const SERVICES_DATA: Service[] = [
     color: "text-amber-500",
     borderColor: "border-amber-500/30",
     glowColor: "bg-amber-500/10",
-    description: "Dominate Amazon search results and scale product sales volume with Sponsored Products, Sponsored Brands, and Amazon DSP campaigns.",
+    description: "Improve marketplace visibility and product sales efficiency with Sponsored Products, Sponsored Brands, and Amazon DSP campaign management.",
     subDetails: ["Sponsored Products", "Sponsored Brands", "Buy Box Boost", "Marketplace Scale"],
     tags: ["Product Ads", "Marketplace Growth", "Amazon PPC", "Buy Box", "Sponsored Brands"],
     features: [

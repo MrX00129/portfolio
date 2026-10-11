@@ -1,17 +1,25 @@
 import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
 import { Mail, Globe, ShieldCheck } from "lucide-react";
+import { BRAND_NAME, CONTACT_EMAIL, SITE_URL, createMetadata, webPageJsonLd } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Contact Us | WebFix Expert",
-  description: "Get in touch with WebFix Expert for premium digital solutions.",
-};
+const title = `Contact ${BRAND_NAME}`;
+const description =
+  "Contact WebFix Experts for web development, WordPress, SEO, paid ads, website maintenance, and AI automation project inquiries.";
+
+export const metadata: Metadata = createMetadata({
+  title,
+  description,
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
     <main className="flex min-h-screen flex-col bg-background">
       <Navbar />
+      <JsonLd data={webPageJsonLd({ path: "/contact", title, description })} />
       
       <div className="pt-32 pb-24 relative overflow-hidden">
         <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -31,8 +39,8 @@ export default function ContactPage() {
                    <div>
                       <h4 className="text-white font-bold text-xl mb-1">Direct Email</h4>
                       <p className="text-gray-400 text-sm mb-3">For general inquiries, custom quotes, and project proposals.</p>
-                      <a href="mailto:ali@webfix.expert" className="text-lg font-semibold text-brand-cyan hover:underline">
-                         ali@webfix.expert
+                      <a href={`mailto:${CONTACT_EMAIL}`} className="text-lg font-semibold text-brand-cyan hover:underline">
+                         {CONTACT_EMAIL}
                       </a>
                    </div>
                 </div>
@@ -44,8 +52,8 @@ export default function ContactPage() {
                    <div>
                       <h4 className="text-white font-bold text-xl mb-1">Official Website</h4>
                       <p className="text-gray-400 text-sm mb-3">Explore our services, SaaS products, and free web tools suite.</p>
-                      <a href="https://webfix.expert" className="text-lg font-semibold text-brand-cyan hover:underline">
-                         https://webfix.expert
+                      <a href={SITE_URL} className="text-lg font-semibold text-brand-cyan hover:underline">
+                         {SITE_URL}
                       </a>
                    </div>
                 </div>
