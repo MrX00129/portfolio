@@ -1,506 +1,517 @@
 "use client";
 
-import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Check,
-  Shield,
+  ShieldCheck,
+  Globe,
+  Monitor,
+  ShoppingCart,
+  Code2,
   Rocket,
   Crown,
-  Infinity as InfinityIcon,
   Smartphone,
-  Monitor,
-  Briefcase,
+  Wrench,
   Zap,
-  HeartHandshake,
-  TrendingUp
+  ShieldAlert,
+  ArrowRightLeft,
+  Share2,
+  TrendingUp,
+  Target,
+  BarChart3,
+  Settings,
+  RefreshCw,
+  Code,
+  Bot,
+  Star,
+  LineChart,
+  ArrowRight,
+  Headphones,
 } from "lucide-react";
 import Link from "next/link";
 
 /* ──────────────────────────────────────────────────────────────────────
-   DATA STRUCTURES
+   DATA FROM REFERENCE IMAGE
    ────────────────────────────────────────────────────────────────────── */
 
-const websitePackages = [
+const serviceCategories = [
   {
-    name: "Basic",
-    price: "99",
-    icon: Rocket,
-    color: "from-green-400 to-emerald-500",
-    shadow: "shadow-emerald-500/20",
-    border: "border-emerald-500/30",
-    features: [
-      "5 Pages",
-      "Responsive",
-      "SEO Friendly",
-      "Contact Form",
-      "Basic SEO",
-      "7 Days Support",
-      "2 Revision",
+    title: "WEBSITE DEVELOPMENT",
+    headerBg: "bg-gradient-to-r from-blue-700 to-indigo-700",
+    borderGlow: "hover:border-blue-500/50 hover:shadow-blue-500/10",
+    badgeColor: "text-blue-400",
+    items: [
+      { name: "Basic Business Website", price: "$150 – $500", icon: Globe },
+      { name: "Professional Website", price: "$500 – $1,200", icon: Monitor },
+      { name: "E-commerce Website", price: "$800 – $2,500", icon: ShoppingCart },
+      { name: "Custom / Advanced Website", price: "$1,500 – $5,000+", icon: Code2 },
+      { name: "Landing Page (High Converting)", price: "$150 – $400", icon: Rocket },
     ],
   },
   {
-    name: "Standard",
-    price: "199",
-    icon: Shield,
-    color: "from-blue-400 to-cyan-500",
-    shadow: "shadow-blue-500/20",
-    border: "border-blue-500/30",
-    features: [
-      "10 Pages",
-      "Responsive",
-      "SEO Friendly",
-      "Advanced SEO",
-      "15 Days Support",
-      "3 Revision",
-      "Social Integration",
+    title: "MAINTENANCE SERVICES (MONTHLY)",
+    headerBg: "bg-gradient-to-r from-sky-700 to-blue-800",
+    borderGlow: "hover:border-sky-500/50 hover:shadow-sky-500/10",
+    badgeColor: "text-sky-400",
+    items: [
+      {
+        name: "Website Basic Maintenance",
+        sub: "(Updates, Backup, Security)",
+        price: "$30 – $100",
+        icon: ShieldCheck,
+      },
+      {
+        name: "Website Standard",
+        sub: "(SEO + Backup + Security)",
+        price: "$100 – $250",
+        icon: Monitor,
+      },
+      {
+        name: "Website Premium",
+        sub: "(Full Support & Optimization)",
+        price: "$250 – $500",
+        icon: Crown,
+      },
+      {
+        name: "WordPress Maintenance",
+        sub: "(Monthly Support)",
+        price: "$80 – $200",
+        icon: Globe,
+      },
+      {
+        name: "Priority Support",
+        sub: "(24/7 Quick Support)",
+        price: "$150 – $400",
+        icon: Headphones,
+      },
     ],
   },
   {
-    name: "Premium",
-    price: "299",
-    icon: Crown,
-    color: "from-purple-400 to-fuchsia-500",
-    shadow: "shadow-purple-500/20",
-    border: "border-purple-500/30",
-    isPopular: true,
-    features: [
-      "15+ Pages",
-      "Responsive",
-      "SEO Friendly",
-      "Advanced SEO",
-      "30 Days Support",
-      "Unlimited Revision",
-      "Premium Features",
+    title: "WORDPRESS FIX / SUPPORT",
+    headerBg: "bg-gradient-to-r from-purple-700 to-violet-800",
+    borderGlow: "hover:border-purple-500/50 hover:shadow-purple-500/10",
+    badgeColor: "text-purple-400",
+    items: [
+      { name: "Small Fix", price: "$20 – $80", icon: Wrench },
+      { name: "Speed Optimization", price: "$80 – $200", icon: Zap },
+      { name: "Full Website Fix", price: "$150 – $400", icon: Wrench },
+      { name: "Malware Removal", price: "$100 – $300", icon: ShieldAlert },
+      { name: "Website Migration", price: "$100 – $250", icon: ArrowRightLeft },
     ],
   },
   {
-    name: "Ultimate",
-    price: "499",
-    icon: Zap,
-    color: "from-orange-400 to-rose-500",
-    shadow: "shadow-orange-500/20",
-    border: "border-orange-500/30",
-    features: [
-      "Unlimited Pages",
-      "Responsive",
-      "SEO Friendly",
-      "Premium SEO",
-      "60 Days Support",
-      "Unlimited Revision",
-      "All Features",
+    title: "ADS MANAGEMENT (MONTHLY)",
+    headerBg: "bg-gradient-to-r from-rose-700 to-red-800",
+    borderGlow: "hover:border-rose-500/50 hover:shadow-rose-500/10",
+    badgeColor: "text-rose-400",
+    note: "Ad spend is separate and paid directly by the client.",
+    items: [
+      { name: "Meta Ads (Setup)", price: "$50 – $200", icon: Share2 },
+      { name: "Meta Ads (Management)", price: "$150 – $600", icon: TrendingUp },
+      { name: "Google Ads (Setup)", price: "$80 – $300", icon: Target },
+      { name: "Google Ads (Management)", price: "$200 – $800", icon: BarChart3 },
+    ],
+  },
+  {
+    title: "MOBILE APP DEVELOPMENT (FLUTTER)",
+    headerBg: "bg-gradient-to-r from-emerald-700 to-green-800",
+    borderGlow: "hover:border-emerald-500/50 hover:shadow-emerald-500/10",
+    badgeColor: "text-emerald-400",
+    items: [
+      { name: "Basic App", price: "$500 – $2,000", icon: Smartphone },
+      { name: "Advanced App", price: "$2,000 – $8,000", icon: Smartphone },
+      { name: "Enterprise App", price: "$8,000 – $20,000+", icon: Smartphone },
+      { name: "App Maintenance (Monthly)", price: "$100 – $300", icon: Smartphone },
+    ],
+  },
+  {
+    title: "BUSINESS AUTOMATION / SOFTWARE",
+    headerBg: "bg-gradient-to-r from-amber-600 to-orange-700",
+    borderGlow: "hover:border-orange-500/50 hover:shadow-orange-500/10",
+    badgeColor: "text-orange-400",
+    items: [
+      { name: "Basic Automation", price: "$200 – $800", icon: Settings },
+      { name: "Workflow Automation", price: "$500 – $2,000", icon: RefreshCw },
+      { name: "Custom Software", price: "$800 – $5,000+", icon: Code },
+      { name: "CRM / SaaS Development", price: "$2,000 – $10,000+", icon: Bot },
     ],
   },
 ];
 
-const websiteMaintenance = [
+const popularPackages = [
   {
-    name: "Basic Care",
-    price: "9",
-    period: "/month",
-    icon: Shield,
-    color: "from-green-400 to-emerald-500",
-    shadow: "shadow-emerald-500/20",
-    border: "border-emerald-500/30",
+    name: "STARTER PACKAGE",
+    subtitle: "Perfect for Small Businesses",
+    tagColor: "bg-blue-500/10 text-blue-400 border border-blue-500/20",
+    headerGrad: "from-blue-600 to-indigo-600",
+    priceColor: "text-blue-400",
+    btnColor: "bg-blue-600 hover:bg-blue-500 text-white shadow-blue-500/25",
+    oneTimePrice: "$450",
+    maintenancePrice: "$50",
     features: [
-      "Plugin Updates",
-      "Theme Updates",
-      "Monthly Backup",
-      "Security Check",
-      "Email Support",
+      "Business Website (5 Pages)",
+      "Basic Maintenance",
+      "1 Month Support",
     ],
+    isPopular: false,
   },
   {
-    name: "Business Care",
-    price: "19",
-    period: "/month",
-    icon: Briefcase,
-    color: "from-blue-400 to-cyan-500",
-    shadow: "shadow-blue-500/20",
-    border: "border-blue-500/30",
-    isPopular: true,
+    name: "GROWTH PACKAGE",
+    subtitle: "Boost Leads & Sales",
+    tagColor: "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20",
+    headerGrad: "from-emerald-600 to-teal-600",
+    priceColor: "text-emerald-400",
+    btnColor: "bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-500/25",
+    oneTimePrice: "$1,200",
+    maintenancePrice: "$200",
     features: [
-      "Everything in Basic",
-      "Speed Optimization",
-      "SEO Monitoring",
-      "Weekly Backup",
+      "Professional Website",
+      "Meta & Google Ads Management",
+      "Monthly Maintenance",
       "Priority Support",
     ],
-  },
-  {
-    name: "Premium Care",
-    price: "39",
-    period: "/month",
-    icon: Crown,
-    color: "from-purple-400 to-fuchsia-500",
-    shadow: "shadow-purple-500/20",
-    border: "border-purple-500/30",
-    features: [
-      "Everything in Business",
-      "Content Updates",
-      "Security Monitoring",
-      "Performance Optimization",
-      "Dedicated Email Support",
-    ],
-  },
-  {
-    name: "Lifetime Care",
-    price: "199",
-    period: "ONE-TIME",
-    icon: InfinityIcon,
-    color: "from-yellow-400 to-amber-500",
-    shadow: "shadow-yellow-500/20",
-    border: "border-yellow-500/30",
-    features: [
-      "Lifetime Maintenance",
-      "Security Updates",
-      "Performance Monitor",
-      "Backup Management",
-      "Minor Changes",
-      "No Monthly Fee",
-    ],
-  },
-];
-
-const appMaintenance = [
-  {
-    name: "Basic App Care",
-    price: "19",
-    period: "/month",
-    icon: Smartphone,
-    color: "from-green-400 to-emerald-500",
-    shadow: "shadow-emerald-500/20",
-    border: "border-emerald-500/30",
-    features: [
-      "Bug Fixes",
-      "Security Updates",
-      "Performance",
-      "Email Support",
-    ],
-  },
-  {
-    name: "Business App Care",
-    price: "49",
-    period: "/month",
-    icon: Monitor,
-    color: "from-blue-400 to-cyan-500",
-    shadow: "shadow-blue-500/20",
-    border: "border-blue-500/30",
     isPopular: true,
-    features: [
-      "Everything in Basic",
-      "Feature Updates",
-      "Play Store Support",
-      "Priority Support",
-    ],
   },
   {
-    name: "Lifetime App Care",
-    price: "599",
-    period: "ONE-TIME",
-    icon: InfinityIcon,
-    color: "from-purple-400 to-fuchsia-500",
-    shadow: "shadow-purple-500/20",
-    border: "border-purple-500/30",
+    name: "PREMIUM PACKAGE",
+    subtitle: "Complete Growth Solution",
+    tagColor: "bg-purple-500/10 text-purple-400 border border-purple-500/20",
+    headerGrad: "from-purple-600 to-fuchsia-600",
+    priceColor: "text-purple-400",
+    btnColor: "bg-purple-600 hover:bg-purple-500 text-white shadow-purple-500/25",
+    oneTimePrice: "$2,500+",
+    maintenancePrice: "$400+",
     features: [
-      "Lifetime Maintenance",
-      "Bug Fixes",
-      "Security Updates",
-      "Version Support",
-      "Priority Email Support",
+      "Custom Website / Landing Pages",
+      "Ads Management (Meta + Google)",
+      "Business Automation",
+      "Full Maintenance & Priority Support",
     ],
+    isPopular: false,
   },
 ];
 
-const allInOnePlan = {
-  name: "All-In-One Business Partner Plan",
-  price: "1,199",
-  period: "ONE-TIME",
-  features: [
-    "Business Website Development",
-    "Android App Development",
-    "Hosting & Domain Setup",
-    "SEO & Analytics Setup",
-    "AI Automation Setup",
-    "Lifetime Maintenance (Web + App)",
-    "Priority Email Support",
-    "Dedicated Support",
-  ],
-};
-
-/* ──────────────────────────────────────────────────────────────────────
-   COMPONENTS
-   ────────────────────────────────────────────────────────────────────── */
-
-function PricingCard({ plan }: { plan: any }) {
-  const Icon = plan.icon;
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      whileHover={{ y: -5 }}
-      className={`relative p-8 rounded-3xl bg-white/[0.02] border backdrop-blur-sm flex flex-col h-full transition-all duration-300 ${plan.border} ${
-        plan.isPopular ? `shadow-2xl ${plan.shadow}` : "hover:bg-white/[0.04]"
-      }`}
-    >
-      {/* Popular Badge */}
-      {plan.isPopular && (
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-          <div className={`px-4 py-1 rounded-full bg-gradient-to-r ${plan.color} text-white text-xs font-bold tracking-wider uppercase shadow-lg`}>
-            Most Popular
-          </div>
-        </div>
-      )}
-
-      {/* Header */}
-      <div className="flex items-center gap-4 mb-6">
-        <div className={`p-3 rounded-2xl bg-gradient-to-br ${plan.color} bg-opacity-10`}>
-          <Icon className="text-white w-6 h-6" />
-        </div>
-        <h3 className="text-xl font-bold text-white uppercase tracking-wide">
-          {plan.name}
-        </h3>
-      </div>
-
-      {/* Price */}
-      <div className="mb-8 pb-8 border-b border-white/10">
-        <div className="flex items-baseline gap-1">
-          <span className="text-2xl text-slate-400 font-medium">$</span>
-          <span className={`text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${plan.color}`}>
-            {plan.price}
-          </span>
-        </div>
-        {plan.period && (
-          <div className="text-sm text-slate-400 font-medium mt-2 tracking-widest uppercase">
-            {plan.period}
-          </div>
-        )}
-      </div>
-
-      {/* Features */}
-      <ul className="space-y-4 mb-8 flex-1">
-        {plan.features.map((feature: string, idx: number) => (
-          <li key={idx} className="flex items-start gap-3 text-slate-300">
-            <div className={`mt-1 rounded-full bg-gradient-to-r ${plan.color} p-0.5`}>
-              <Check className="w-3 h-3 text-white" strokeWidth={3} />
-            </div>
-            <span className="text-sm font-medium leading-tight">{feature}</span>
-          </li>
-        ))}
-      </ul>
-
-      {/* CTA Button */}
-      <Link
-        href="/contact"
-        className={`w-full py-4 rounded-xl font-bold text-center transition-all duration-300 shadow-lg ${
-          plan.isPopular
-            ? `bg-gradient-to-r ${plan.color} text-white hover:scale-[1.02] hover:shadow-xl ${plan.shadow}`
-            : "bg-white/5 text-white hover:bg-white/10 border border-white/10"
-        }`}
-      >
-        Get Started
-      </Link>
-    </motion.div>
-  );
-}
+const whyChooseUs = [
+  "Experienced & Skilled Team",
+  "ROI Focused Strategies",
+  "Clear Communication",
+  "On-Time Delivery",
+  "Long Term Partnership",
+];
 
 export default function PricingPage() {
-  const [activeTab, setActiveTab] = useState<"web" | "web-care" | "app-care">("web");
-
   return (
-    <main className="flex min-h-screen flex-col bg-[#010810] selection:bg-sky-500/30">
+    <main className="flex min-h-screen flex-col bg-[#010816] text-white selection:bg-brand-cyan/30">
       <Navbar />
 
-      <div className="pt-32 pb-24 relative overflow-hidden min-h-screen">
-        {/* Background Effects */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-900/20 rounded-full blur-[150px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="pt-32 pb-24 relative overflow-hidden">
+        {/* Glow ambient background lights */}
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-96 right-10 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[160px] pointer-events-none" />
+        <div className="absolute bottom-20 left-10 w-[600px] h-[600px] bg-emerald-600/10 rounded-full blur-[160px] pointer-events-none" />
 
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 max-w-7xl">
           
-          {/* Header */}
-          <div className="text-center max-w-4xl mx-auto mb-16">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 tracking-tight"
-            >
-              We Build Powerful Websites & Apps. <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-500">
-                We Maintain Them Forever.
+          {/* Header Title */}
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-brand-cyan text-xs font-bold tracking-widest uppercase mb-4">
+              <Star size={14} className="fill-brand-cyan" /> Transparent & Value-Driven Pricing
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-5 tracking-tight">
+              Agency-Grade Quality, <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-blue-400 to-indigo-400">
+                Transparent USD Pricing
               </span>
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-lg text-slate-400 font-medium"
-            >
-              Choose a package that fits your business needs. No hidden fees.
-            </motion.p>
+            </h1>
+            <p className="text-gray-400 text-base sm:text-lg">
+              Explore our individual service rate cards and high-value bundled packages. No surprise invoices, ever.
+            </p>
           </div>
 
-          {/* Tabs */}
-          <div className="flex justify-center mb-16 relative z-20">
-            <div className="inline-flex flex-col sm:flex-row bg-white/5 border border-white/10 p-2 rounded-3xl sm:rounded-full backdrop-blur-md gap-2">
-              <button
-                onClick={() => setActiveTab("web")}
-                className={`px-8 py-3 rounded-2xl sm:rounded-full font-bold transition-all duration-300 ${
-                  activeTab === "web"
-                    ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/25"
-                    : "text-slate-400 hover:text-white hover:bg-white/5"
-                }`}
+          {/* ──────────────────────────────────────────────────────────────────
+              SECTION 1: 6 SERVICE CATEGORIES (GRID OF 3 COLS)
+              ────────────────────────────────────────────────────────────────── */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+            {serviceCategories.map((category, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.06 }}
+                className={`rounded-2xl overflow-hidden bg-white/[0.02] border border-white/10 backdrop-blur-md flex flex-col justify-between transition-all duration-300 shadow-xl ${category.borderGlow}`}
               >
-                Website Packages
-              </button>
-              <button
-                onClick={() => setActiveTab("web-care")}
-                className={`px-8 py-3 rounded-2xl sm:rounded-full font-bold transition-all duration-300 ${
-                  activeTab === "web-care"
-                    ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/25"
-                    : "text-slate-400 hover:text-white hover:bg-white/5"
-                }`}
-              >
-                Web Maintenance
-              </button>
-              <button
-                onClick={() => setActiveTab("app-care")}
-                className={`px-8 py-3 rounded-2xl sm:rounded-full font-bold transition-all duration-300 ${
-                  activeTab === "app-care"
-                    ? "bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white shadow-lg shadow-purple-500/25"
-                    : "text-slate-400 hover:text-white hover:bg-white/5"
-                }`}
-              >
-                App Maintenance
-              </button>
-            </div>
-          </div>
-
-          {/* Tab Content */}
-          <div className="mb-24 min-h-[600px]">
-            <AnimatePresence mode="wait">
-              {activeTab === "web" && (
-                <motion.div
-                  key="web"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.3 }}
-                  className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6"
-                >
-                  {websitePackages.map((plan, i) => (
-                    <PricingCard key={i} plan={plan} />
-                  ))}
-                </motion.div>
-              )}
-
-              {activeTab === "web-care" && (
-                <motion.div
-                  key="web-care"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.3 }}
-                  className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6"
-                >
-                  {websiteMaintenance.map((plan, i) => (
-                    <PricingCard key={i} plan={plan} />
-                  ))}
-                </motion.div>
-              )}
-
-              {activeTab === "app-care" && (
-                <motion.div
-                  key="app-care"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.3 }}
-                  className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
-                >
-                  {appMaintenance.map((plan, i) => (
-                    <PricingCard key={i} plan={plan} />
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* All-In-One Business Partner Plan */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative p-[1px] rounded-[2.5rem] bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-500 overflow-hidden"
-          >
-            {/* Animated border glow */}
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-500 blur-xl opacity-50 pointer-events-none" />
-            
-            <div className="relative bg-[#050f22] rounded-[2.45rem] p-8 md:p-12 z-10 flex flex-col lg:flex-row items-center gap-12">
-              {/* Left Side: Title & Price */}
-              <div className="flex-1 text-center lg:text-left">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 text-sm font-bold tracking-widest uppercase mb-6">
-                  <Crown size={16} /> Ultimate Value
-                </div>
-                <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
-                  All-In-One <br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-                    Business Partner
-                  </span> Plan
-                </h2>
-                <div className="mb-8">
-                  <div className="flex items-baseline justify-center lg:justify-start gap-1">
-                    <span className="text-3xl text-slate-400 font-medium">$</span>
-                    <span className="text-6xl md:text-7xl font-black text-white">
-                      {allInOnePlan.price}
-                    </span>
+                <div>
+                  {/* Category Header */}
+                  <div className={`${category.headerBg} px-6 py-4 text-center shadow-md`}>
+                    <h3 className="text-white font-black text-sm sm:text-base tracking-wider uppercase">
+                      {category.title}
+                    </h3>
                   </div>
-                  <div className="text-yellow-500 font-bold mt-2 tracking-widest uppercase">
-                    ONE-TIME PAYMENT
+
+                  {/* Table Sub-header */}
+                  <div className="flex justify-between items-center px-6 py-3 bg-white/[0.03] border-b border-white/5 text-[11px] font-bold text-gray-400 tracking-wider uppercase">
+                    <span>SERVICE</span>
+                    <span>PRICE (USD)</span>
+                  </div>
+
+                  {/* Service Items List */}
+                  <div className="divide-y divide-white/5 px-2">
+                    {category.items.map((item, itemIdx) => {
+                      const IconComponent = item.icon;
+                      return (
+                        <div
+                          key={itemIdx}
+                          className="flex items-center justify-between px-4 py-3.5 hover:bg-white/[0.03] transition-colors rounded-lg group"
+                        >
+                          <div className="flex items-center gap-3 pr-2">
+                            <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0 border border-white/5 text-gray-300 group-hover:text-brand-cyan transition-colors">
+                              <IconComponent size={16} />
+                            </div>
+                            <div>
+                              <p className="text-sm font-semibold text-gray-200 leading-snug group-hover:text-white transition-colors">
+                                {item.name}
+                              </p>
+                              {"sub" in item && item.sub && (
+                                <p className="text-[11px] text-gray-400 font-normal">
+                                  {item.sub}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                          <div className="text-right shrink-0">
+                            <span className="text-sm font-bold text-white bg-white/5 px-2.5 py-1 rounded-md border border-white/5 tracking-tight whitespace-nowrap">
+                              {item.price}
+                            </span>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center w-full lg:w-auto px-10 py-5 rounded-2xl bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold text-lg hover:scale-[1.02] hover:shadow-xl shadow-yellow-500/25 transition-all duration-300"
-                >
-                  <HeartHandshake className="mr-2" /> Become a Partner
-                </Link>
-              </div>
 
-              {/* Right Side: Features Grid */}
-              <div className="flex-1 w-full">
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {allInOnePlan.features.map((feature, idx) => (
-                    <div key={idx} className="flex items-start gap-3 p-4 rounded-2xl bg-white/[0.03] border border-white/5">
-                      <div className="mt-0.5 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 p-1">
-                        <Check className="w-4 h-4 text-white" strokeWidth={3} />
-                      </div>
-                      <span className="text-slate-200 font-medium">{feature}</span>
+                {/* Optional Note for Ads Management */}
+                {"note" in category && category.note && (
+                  <div className="p-4 mt-2">
+                    <div className="bg-rose-500/10 border border-rose-500/20 rounded-xl px-4 py-2.5 text-center">
+                      <p className="text-xs font-medium text-rose-300">
+                        {category.note}
+                      </p>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* ──────────────────────────────────────────────────────────────────
+              SECTION 2: POPULAR PACKAGES & WHY CHOOSE US
+              ────────────────────────────────────────────────────────────────── */}
+          <div className="relative pt-6">
+            
+            {/* Section Heading */}
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-3">
+                <Star className="text-yellow-400 fill-yellow-400 w-5 h-5 animate-pulse" />
+                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-widest uppercase">
+                  POPULAR PACKAGES
+                </h2>
+                <Star className="text-yellow-400 fill-yellow-400 w-5 h-5 animate-pulse" />
+              </div>
+              <p className="text-gray-400 text-sm mt-2">
+                All-in-one bundled solutions tailored for accelerated business growth
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch">
+              
+              {/* 3 POPULAR PACKAGES (Lg: spans 3 cols) */}
+              <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
+                {popularPackages.map((pkg, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: idx * 0.1 }}
+                    className={`relative rounded-3xl bg-white/[0.02] border backdrop-blur-md p-6 flex flex-col justify-between transition-all duration-300 ${
+                      pkg.isPopular
+                        ? "border-emerald-500/50 shadow-2xl shadow-emerald-500/10 bg-gradient-to-b from-emerald-500/[0.04] to-transparent ring-1 ring-emerald-500/30"
+                        : "border-white/10 hover:border-white/20"
+                    }`}
+                  >
+                    {/* Ribbon for Most Popular */}
+                    {pkg.isPopular && (
+                      <div className="absolute -top-3.5 right-6 z-20">
+                        <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white text-[10px] font-black tracking-widest uppercase py-1 px-3.5 rounded-full shadow-lg border border-red-400/30">
+                          ★ MOST POPULAR
+                        </div>
+                      </div>
+                    )}
+
+                    <div>
+                      {/* Package Header */}
+                      <div className="mb-6">
+                        <h3 className="text-lg font-black text-white uppercase tracking-wider mb-2">
+                          {pkg.name}
+                        </h3>
+                        <div className={`inline-block text-xs font-semibold px-3 py-1 rounded-full ${pkg.tagColor}`}>
+                          {pkg.subtitle}
+                        </div>
+                      </div>
+
+                      {/* Features List */}
+                      <ul className="space-y-3.5 mb-8">
+                        {pkg.features.map((feat, featIdx) => (
+                          <li key={featIdx} className="flex items-start gap-3">
+                            <div className="mt-0.5 w-5 h-5 rounded-full bg-white/10 flex items-center justify-center shrink-0 text-brand-cyan">
+                              <Check size={13} strokeWidth={3} />
+                            </div>
+                            <span className="text-sm font-medium text-gray-300">
+                              {feat}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Price Block & CTA */}
+                    <div className="pt-6 border-t border-white/10">
+                      <div className="grid grid-cols-2 gap-2 text-center mb-6 bg-white/[0.03] p-3 rounded-2xl border border-white/5">
+                        <div className="border-r border-white/10 pr-2">
+                          <p className={`text-2xl font-black ${pkg.priceColor}`}>
+                            {pkg.oneTimePrice}
+                          </p>
+                          <p className="text-[11px] text-gray-400 font-medium uppercase tracking-wider mt-0.5">
+                            One Time
+                          </p>
+                        </div>
+                        <div className="pl-2">
+                          <p className="text-2xl font-black text-white">
+                            {pkg.maintenancePrice}
+                            <span className="text-xs text-gray-400 font-normal">/mo</span>
+                          </p>
+                          <p className="text-[11px] text-gray-400 font-medium uppercase tracking-wider mt-0.5">
+                            Maintenance
+                          </p>
+                        </div>
+                      </div>
+
+                      <Link
+                        href="/contact"
+                        className={`w-full py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all duration-300 shadow-lg ${pkg.btnColor}`}
+                      >
+                        Choose Plan <ArrowRight size={16} />
+                      </Link>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* RIGHT SIDEBAR: WHY CHOOSE US & FREE AUDIT (Lg: spans 1 col) */}
+              <div className="flex flex-col gap-6">
                 
-                <div className="mt-8 flex items-center justify-center lg:justify-start gap-6 text-sm text-slate-400 font-medium border-t border-white/10 pt-8">
-                  <div className="flex items-center gap-2">
-                    <Rocket className="w-5 h-5 text-sky-400" /> Fast Delivery
+                {/* Why Choose Us Card */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  className="rounded-3xl bg-white/[0.02] border border-blue-500/20 backdrop-blur-md overflow-hidden flex flex-col justify-between shadow-xl"
+                >
+                  <div>
+                    <div className="bg-gradient-to-r from-blue-700 to-indigo-800 px-6 py-4 text-center">
+                      <h4 className="text-white font-black text-sm tracking-wider uppercase">
+                        WHY CHOOSE US?
+                      </h4>
+                    </div>
+
+                    <div className="p-6 space-y-4">
+                      {whyChooseUs.map((reason, idx) => (
+                        <div key={idx} className="flex items-center gap-3">
+                          <div className="w-5 h-5 rounded-full bg-blue-500/20 text-brand-cyan flex items-center justify-center shrink-0">
+                            <Check size={13} strokeWidth={3} />
+                          </div>
+                          <span className="text-sm font-semibold text-gray-200">
+                            {reason}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-emerald-400" /> Secure & Reliable
+                </motion.div>
+
+                {/* Free Audit Banner */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  className="rounded-3xl bg-gradient-to-br from-blue-900/40 via-indigo-900/30 to-purple-900/30 border border-brand-cyan/30 p-6 flex-1 flex flex-col justify-between relative overflow-hidden group shadow-xl"
+                >
+                  <div className="absolute -top-10 -right-10 w-28 h-28 bg-brand-cyan/20 rounded-full blur-2xl group-hover:scale-150 transition-transform" />
+
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <LineChart className="text-brand-cyan w-6 h-6" />
+                      <h4 className="text-base font-black text-white tracking-wide uppercase">
+                        GET A <span className="text-red-500">FREE AUDIT!</span>
+                      </h4>
+                    </div>
+                    <p className="text-xs text-gray-300 leading-relaxed mb-6">
+                      Let us analyze your business, website performance, and ad efficiency to show you the best growth opportunities.
+                    </p>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <TrendingUp className="w-5 h-5 text-purple-400" /> Result Driven
-                  </div>
+
+                  <Link
+                    href="/contact"
+                    className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-brand-cyan to-blue-500 hover:from-cyan-400 hover:to-blue-600 text-[#010816] font-bold text-xs uppercase tracking-wider text-center transition-all shadow-lg shadow-cyan-500/20"
+                  >
+                    Claim Your Free Audit
+                  </Link>
+                </motion.div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* ──────────────────────────────────────────────────────────────────
+              SECTION 3: BOTTOM CONSULTATION CTA BANNER
+              ────────────────────────────────────────────────────────────────── */}
+          <div className="mt-20">
+            <div className="relative rounded-3xl bg-gradient-to-r from-blue-900/50 via-slate-900/60 to-purple-900/50 border border-white/10 p-8 sm:p-12 text-center backdrop-blur-xl overflow-hidden">
+              <div className="max-w-2xl mx-auto relative z-10">
+                <h3 className="text-2xl sm:text-4xl font-black text-white mb-4">
+                  Need a Custom Quote or Tailored Plan?
+                </h3>
+                <p className="text-gray-300 text-sm sm:text-base mb-8">
+                  Whether you need a dedicated development team, complex SaaS architecture, or managed growth campaigns, we are ready to help.
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-4">
+                  <Link
+                    href="/contact"
+                    className="px-8 py-4 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-bold transition-all shadow-lg shadow-brand-blue/30 text-sm"
+                  >
+                    Talk to Founder ALI
+                  </Link>
+                  <a
+                    href="mailto:ali@webfix.expert"
+                    className="px-8 py-4 rounded-xl bg-white/5 hover:bg-white/10 text-white font-bold border border-white/10 transition-all text-sm"
+                  >
+                    ali@webfix.expert
+                  </a>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>
-      
+
       <Footer />
     </main>
   );
