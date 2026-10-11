@@ -26,7 +26,7 @@ import Link from "next/link";
 const websitePackages = [
   {
     name: "Basic",
-    price: "6,999",
+    price: "99",
     icon: Rocket,
     color: "from-green-400 to-emerald-500",
     shadow: "shadow-emerald-500/20",
@@ -43,7 +43,7 @@ const websitePackages = [
   },
   {
     name: "Standard",
-    price: "12,999",
+    price: "199",
     icon: Shield,
     color: "from-blue-400 to-cyan-500",
     shadow: "shadow-blue-500/20",
@@ -60,7 +60,7 @@ const websitePackages = [
   },
   {
     name: "Premium",
-    price: "19,999",
+    price: "299",
     icon: Crown,
     color: "from-purple-400 to-fuchsia-500",
     shadow: "shadow-purple-500/20",
@@ -78,7 +78,7 @@ const websitePackages = [
   },
   {
     name: "Ultimate",
-    price: "29,999",
+    price: "499",
     icon: Zap,
     color: "from-orange-400 to-rose-500",
     shadow: "shadow-orange-500/20",
@@ -98,7 +98,7 @@ const websitePackages = [
 const websiteMaintenance = [
   {
     name: "Basic Care",
-    price: "499",
+    price: "9",
     period: "/month",
     icon: Shield,
     color: "from-green-400 to-emerald-500",
@@ -114,7 +114,7 @@ const websiteMaintenance = [
   },
   {
     name: "Business Care",
-    price: "999",
+    price: "19",
     period: "/month",
     icon: Briefcase,
     color: "from-blue-400 to-cyan-500",
@@ -131,7 +131,7 @@ const websiteMaintenance = [
   },
   {
     name: "Premium Care",
-    price: "1,999",
+    price: "39",
     period: "/month",
     icon: Crown,
     color: "from-purple-400 to-fuchsia-500",
@@ -147,7 +147,7 @@ const websiteMaintenance = [
   },
   {
     name: "Lifetime Care",
-    price: "14,999",
+    price: "199",
     period: "ONE-TIME",
     icon: InfinityIcon,
     color: "from-yellow-400 to-amber-500",
@@ -167,7 +167,7 @@ const websiteMaintenance = [
 const appMaintenance = [
   {
     name: "Basic App Care",
-    price: "999",
+    price: "19",
     period: "/month",
     icon: Smartphone,
     color: "from-green-400 to-emerald-500",
@@ -182,7 +182,7 @@ const appMaintenance = [
   },
   {
     name: "Business App Care",
-    price: "2,499",
+    price: "49",
     period: "/month",
     icon: Monitor,
     color: "from-blue-400 to-cyan-500",
@@ -198,7 +198,7 @@ const appMaintenance = [
   },
   {
     name: "Lifetime App Care",
-    price: "49,999",
+    price: "599",
     period: "ONE-TIME",
     icon: InfinityIcon,
     color: "from-purple-400 to-fuchsia-500",
@@ -216,7 +216,7 @@ const appMaintenance = [
 
 const allInOnePlan = {
   name: "All-In-One Business Partner Plan",
-  price: "99,999",
+  price: "1,199",
   period: "ONE-TIME",
   features: [
     "Business Website Development",
@@ -268,7 +268,7 @@ function PricingCard({ plan }: { plan: any }) {
       {/* Price */}
       <div className="mb-8 pb-8 border-b border-white/10">
         <div className="flex items-baseline gap-1">
-          <span className="text-2xl text-slate-400 font-medium">₹</span>
+          <span className="text-2xl text-slate-400 font-medium">$</span>
           <span className={`text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${plan.color}`}>
             {plan.price}
           </span>
@@ -294,7 +294,7 @@ function PricingCard({ plan }: { plan: any }) {
 
       {/* CTA Button */}
       <Link
-        href="#contact"
+        href="/contact"
         className={`w-full py-4 rounded-xl font-bold text-center transition-all duration-300 shadow-lg ${
           plan.isPopular
             ? `bg-gradient-to-r ${plan.color} text-white hover:scale-[1.02] hover:shadow-xl ${plan.shadow}`
@@ -453,9 +453,9 @@ export default function PricingPage() {
                 </h2>
                 <div className="mb-8">
                   <div className="flex items-baseline justify-center lg:justify-start gap-1">
-                    <span className="text-3xl text-slate-400 font-medium">₹</span>
+                    <span className="text-3xl text-slate-400 font-medium">$</span>
                     <span className="text-6xl md:text-7xl font-black text-white">
-                      99,999
+                      {allInOnePlan.price}
                     </span>
                   </div>
                   <div className="text-yellow-500 font-bold mt-2 tracking-widest uppercase">
@@ -463,7 +463,7 @@ export default function PricingPage() {
                   </div>
                 </div>
                 <Link
-                  href="#contact"
+                  href="/contact"
                   className="inline-flex items-center justify-center w-full lg:w-auto px-10 py-5 rounded-2xl bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold text-lg hover:scale-[1.02] hover:shadow-xl shadow-yellow-500/25 transition-all duration-300"
                 >
                   <HeartHandshake className="mr-2" /> Become a Partner
